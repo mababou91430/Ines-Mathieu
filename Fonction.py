@@ -14,6 +14,11 @@ def nom_president():
     return L
 
 
+def clean():
+    for i in os.listdir("speeches-20231124"):
+
+
+
 
 nom = nom_president()
 print(nom)
