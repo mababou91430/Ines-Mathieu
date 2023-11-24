@@ -15,10 +15,11 @@ def nom_president():
 
 
 def clean():
-    for i in os.listdir("speeches-20231124"):
-
-
-
-
-nom = nom_president()
-print(nom)
+    for filename in os.listdir("speeches-20231124"):
+        with open(filename, "r") as f1:
+            ligne = f1.readline()
+            while ligne != "":
+                for i in range(len(ligne)):
+                    if 65 <= ord(ligne[i]) <= 90:
+                        l = list(ligne)
+                        l[i] = chr(ord(l[i]) + 32)
