@@ -16,10 +16,16 @@ def nom_president():
 
 def clean():
     for filename in os.listdir("speeches-20231124"):
-        with open(filename, "r") as f1:
+        mon_fichier = "speeches-20231124/" + filename
+        f1 = open(mon_fichier, "r")
+        ligne = f1.readline()
+        while ligne != "":
+            for i in range(len(ligne)):
+                if 65 <= ord(ligne[i]) <= 90:
+                    l = list(ligne)
+                    l[i] = chr(ord(l[i]) + 32)
             ligne = f1.readline()
-            while ligne != "":
-                for i in range(len(ligne)):
-                    if 65 <= ord(ligne[i]) <= 90:
-                        l = list(ligne)
-                        l[i] = chr(ord(l[i]) + 32)
+        text = "cleaned/" + filename
+
+
+clean()
