@@ -18,8 +18,8 @@ def clean():
     for filename in os.listdir("speeches-20231124"):
         mon_fichier = "speeches-20231124/" + filename
         f1 = open(mon_fichier, "r")
-        text = "cleaned/" + filename
-        f = open(text, "w")
+        repertoire_nom_fichier = "cleaned/" + filename
+        f = open(repertoire_nom_fichier, "w")
         ligne = f1.readline()
         while ligne != "":
             l = list(ligne)
