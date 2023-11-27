@@ -37,3 +37,28 @@ def nom_president():
 
 
 print(nom_president())
+
+def clean():
+    for filename in os.listdir("speeches-20231124"):
+        mon_fichier = "speeches-20231124/" + filename
+        f1 = open(mon_fichier, "r")
+        repertoire_nom_fichier = "cleaned/" + filename
+        f = open(repertoire_nom_fichier, "w")
+        ligne = f1.readline()
+        while ligne != "":
+            l = list(ligne)
+            for i in range(len(ligne)):
+                if 65 <= ord(l[i]) <= 90:
+                    l[i] = chr(ord(l[i]) + 32)
+                if (33 <= ord(l[i]) <= 47) or (58 <= ord(l[i]) <= 64) or (91 <= ord(l[i]) <= 96) or (123 <= ord(l[i]) <= 126 ) :
+                    if ord(l[i])== 45 or 44:
+                        l[i] = chr(32)
+                    else:
+                        l[i]= chr(0)
+            ligne = "".join(l)
+            f.write(ligne)
+            ligne = f1.readline()
+
+
+
+clean()
