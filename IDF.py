@@ -13,15 +13,12 @@ def IDF():
         while ligne != "":
             L1 = ligne.split(" ")
             for i in range(len(L1)):
-                for j in Dictionnaire.keys():
-                    if j == L1[i]:
-                        p = False
-                        temp = L1[i]
-            if p == True:
-
-
-
+                if L1[i] not in Dictionnaire:
+                    Dictionnaire[L1[i]] = 1
+                else:
+                    Dictionnaire[L1[i]] =+ 1
             ligne = f1.readline()
-            print(L1)
+            print(Dictionnaire)
+
 
 IDF()
