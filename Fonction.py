@@ -62,3 +62,24 @@ def clean():
 
 
 clean()
+
+
+def TF():
+    dic = {}
+    a=0
+    for filename in os.listdir("cleaned"):
+        text = "cleaned/" + filename
+        f1 = open(text, "r")
+        ligne = f1.readline()
+        p = True
+        while ligne != "":
+            L1 = ligne.split(" ")
+            for i in range(len(L1)):
+                if L1[i] not in dic:
+                    a=list.count(L1[i])
+                    dic[L1[i]]=a
+                a=0
+
+            print(dic())
+
+TF()
