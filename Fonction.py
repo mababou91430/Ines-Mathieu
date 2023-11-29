@@ -66,7 +66,8 @@ clean()
 
 def TF():
     dic = {}
-    a=0
+    a = 0
+    b = 0
     for filename in os.listdir("cleaned"):
         text = "cleaned/" + filename
         f1 = open(text, "r")
@@ -75,14 +76,19 @@ def TF():
         while ligne != "":
             L1 = ligne.split(" ")
             for i in range(len(L1)):
-                if L1[i] not in dic:
-                    a=1
-                    for j in range(i,len(L1)):
-                        if L1[j]==L1[i]:
-                            a+=1
-                    dic[L1[i]]=a
-                a=0
+                if L1[i] in dic:
+                    b = L1[i].values()
+                    b += 1
+                    dic[L1[i]] = b
 
-            print(dic())
+                else:
+                    for j in range(i, len(L1)):
+                        if L1[j] == L1[i]:
+                            a += 1
+                    dic[L1[i]] = a
+                    a = 0
+
+        print(dic())
+
 
 TF()
