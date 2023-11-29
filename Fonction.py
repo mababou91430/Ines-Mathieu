@@ -76,7 +76,10 @@ def TF():
             L1 = ligne.split(" ")
             for i in range(len(L1)):
                 if L1[i] not in dic:
-                    a=list.count(L1[i])
+                    a=1
+                    for j in range(i,len(L1)):
+                        if L1[j]==L1[i]:
+                            a+=1
                     dic[L1[i]]=a
                 a=0
 
