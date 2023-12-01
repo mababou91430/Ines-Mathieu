@@ -3,10 +3,36 @@ from IDF import *
 from Fonction_ines import *
 import os
 
-L1 = []
-Dictionnaire_IDF = IDF()
-for mot in Dictionnaire_IDF.keys():
-    L2 = []
-    L2.append(mot)
-    for filename in os.listdir("cleaned")
+print("Bienvenue sur le Chat bot, veuillez entrer le numéro de votre requêtte :")
+print(
+            "1. Afficher la liste des mots les moins importants dans le corpus de documents.\n "
+            "2. Afficher le(s) mot(s) ayant le score TD-IDF le plus élevé.\n "
+            "3. Indiquer le(s) mot(s) le(s) plus répété(s) par le président Chirac.\n "
+            "4.Indiquer le(s) nom(s) du (des) président(s) qui a (ont) parlé de la « Nation » et celui qui l’a répété le plus defois.\n "
+            "5. Indiquer le premier président à parler du climat et/ou de l’écologie.\n"
+            "6. Hormis les mots dits « non importants », quel(s) est(sont) le(s) mot(s) que tous les présidents ont évoqué.\n ")
+x=int(input())
+
+while x<0 or x>6:
+    print("Bienvenue sur le Chat bot, veuillez entrer le numéro de votre requêtte :")
+    x = int(input("1. Afficher la liste des mots les moins importants dans le corpus de documents.\n "
+                  "2. Afficher le(s) mot(s) ayant le score TD-IDF le plus élevé.\n "
+                  "3. Indiquer le(s) mot(s) le(s) plus répété(s) par le président Chirac.\n "
+                  "4.Indiquer le(s) nom(s) du (des) président(s) qui a (ont) parlé de la « Nation » et celui qui l’a répété le plus defois.\n "
+                  "5. Indiquer le premier président à parler du climat et/ou de l’écologie.\n"
+                  "6. Hormis les mots dits « non importants », quel(s) est(sont) le(s) mot(s) que tous les présidents ont évoqué.\n "))
+
+if x==1:
+
+if x==2:
+
+if x == 3:
+
+if x == 4:
+
+if x == 5:
+
+if x == 6:
+
+
 
