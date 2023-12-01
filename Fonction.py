@@ -55,5 +55,5 @@ def TF():
             ligne = f1.readline()
         print(dic)
 
-
+test = {}
 TF()
