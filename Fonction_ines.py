@@ -84,8 +84,6 @@ def TF(name):
                 a = 0
         ligne = f1.readline()
 
-    print(dic)
     return(dic)
 
 
-TF("cleaned/Nomination_Chirac1.txt")
