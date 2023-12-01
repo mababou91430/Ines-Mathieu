@@ -36,7 +36,7 @@ def nom_president():
     return L
 
 
-print(nom_president())
+#print(nom_president())
 
 def clean():
     for filename in os.listdir("speeches-20231124"):
@@ -61,34 +61,31 @@ def clean():
 
 
 
-clean()
+#clean()
 
 
-def TF():
+def TF(name):
     dic = {}
     a = 0
     b = 0
-    for filename in os.listdir("cleaned"):
-        text = "cleaned/" + filename
-        f1 = open(text, "r")
+    f1 = open(name, "r")
+    ligne = f1.readline()
+    p = True
+    while ligne != "":
+        L1 = ligne.split(" ")
+        for i in range(len(L1)):
+            if L1[i] in dic:
+                dic[L1[i]] = dic[L1[i]] + 1
+            else:
+                for j in range(i, len(L1)):
+                    if L1[j] == L1[i]:
+                        a += 1
+                dic[L1[i]] = a
+                a = 0
         ligne = f1.readline()
-        p = True
-        while ligne != "":
-            L1 = ligne.split(" ")
-            for i in range(len(L1)):
-                if L1[i] in dic:
-                    b = L1[i].values()
-                    b += 1
-                    dic[L1[i]] = b
 
-                else:
-                    for j in range(i, len(L1)):
-                        if L1[j] == L1[i]:
-                            a += 1
-                    dic[L1[i]] = a
-                    a = 0
-
-        print(dic())
+    print(dic)
+    return(dic)
 
 
-TF()
+TF("cleaned/Nomination_Chirac1.txt")
