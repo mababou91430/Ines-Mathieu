@@ -1,5 +1,7 @@
 from Fonction import *
+from IDF import *
 
-nom_prenom = nom_president()
-for i in range(len(nom_prenom)):
-    print(nom_prenom[i])
+L1 = []
+Dictionnair_IDF = IDF()
+for mot in Dictionnair_IDF.keys():
+

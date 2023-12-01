@@ -13,7 +13,7 @@ def IDF():
         while ligne != "":
             L1 = ligne.split(" ")
             for i in range(len(L1)):
-                if L1[i] not in Dictionnaire:
+                if L1[i] not in Dictionnaire and L1[i] != "\n" and L1[i] != "" and L1[i] != " ":
                     Dictionnaire[L1[i]] = 0
             ligne = f1.readline()
     for filename1 in os.listdir("cleaned"):
@@ -32,7 +32,7 @@ def IDF():
                     already = True
     for mot in Dictionnaire.keys():
         Dictionnaire[mot] = math.log(8/Dictionnaire[mot])
-    print(Dictionnaire)
+    return Dictionnaire
 
 
 IDF()
