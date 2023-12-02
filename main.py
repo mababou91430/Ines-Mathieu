@@ -12,7 +12,8 @@ print(
             "3. Indiquer le(s) mot(s) le(s) plus répété(s) par le président Chirac.\n "
             "4.Indiquer le(s) nom(s) du (des) président(s) qui a (ont) parlé de la « Nation » et celui qui l’a répété le plus defois.\n "
             "5. Indiquer le premier président à parler du climat et/ou de l’écologie.\n"
-            "6. Hormis les mots dits « non importants », quel(s) est(sont) le(s) mot(s) que tous les présidents ont évoqué.\n ")
+            "6. Hormis les mots dits « non importants », quel(s) est(sont) le(s) mot(s) que tous les présidents ont évoqué.\n "
+            "(PS : le programme prend un peu de temps a s'éxécuter)")
 
 x=int(input("Numéro de la demande :"))
 
@@ -46,6 +47,7 @@ if x==2:
     temp1 = 0.0
     mot = ""
     g = TF_IDF()
+    print(g)
     for i in range(len(g)):
         temp = 0.0
         for j in range(1,9):
@@ -58,7 +60,7 @@ if x==2:
 
 if x == 3:
     k=(max(TF("cleaned/Nomination_Chirac1.txt")))
-    print(k)
+    print("Le mot le plus répéter par le président Chirac est: ",k)
 
 if x == 4:
     k=[]
@@ -66,7 +68,7 @@ if x == 4:
 
     for filename in os.listdir("cleaned"):
         text = "cleaned/" + filename
-        f1 = open(text, "r")
+        f1 = open(text, "r",encoding="utf-8")
         ligne = f1.readline()
         d = TF(text)
         #print(d)
@@ -85,7 +87,6 @@ if x == 4:
                 for j in range(len(k)):
                     if k[j]==filename:
                         k[j+1]+=d["nation"]
-    print(k)
     print("Les présidents évoquant le mot Nation sont :", )
     for c in range(0,len(k),2):
         print(k[c],"qui le prononce",k[c+1],"fois.")
@@ -100,6 +101,7 @@ if x == 4:
 if x == 5:
     print("Le président parlant pour la première fois d'écologie est Nicolas Sarkozy")
 if x == 6:
+    print("Les mots que tous les présidents ont évoqué sont :")
     g = TF_IDF()
     temp = True
     L1 = []

@@ -8,7 +8,7 @@ def IDF():
     Dictionnaire = {}
     for filename in os.listdir("cleaned"):
         text = "cleaned/" + filename
-        f1 = open(text, "r")
+        f1 = open(text, "r", encoding="utf-8")
         ligne = f1.readline()
         temp = ""
         p = True
@@ -20,7 +20,7 @@ def IDF():
             ligne = f1.readline()
     for filename1 in os.listdir("cleaned"):
         text1 = "cleaned/" + filename1
-        f2 = open(text1, "r")
+        f2 = open(text1, "r", encoding="utf-8")
         ligne = f2.readline()
         L2 = []
         while ligne != "":

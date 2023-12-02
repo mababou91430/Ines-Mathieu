@@ -41,9 +41,9 @@ def nom_president():
 def clean():
     for filename in os.listdir("speeches-20231124"):
         mon_fichier = "speeches-20231124/" + filename
-        f1 = open(mon_fichier, "r")
+        f1 = open(mon_fichier, "r", encoding="utf-8")
         repertoire_nom_fichier = "cleaned/" + filename
-        f = open(repertoire_nom_fichier, "w")
+        f = open(repertoire_nom_fichier, "w", encoding="utf-8")
         ligne = f1.readline()
         while ligne != "":
             l = list(ligne)
@@ -68,7 +68,7 @@ def TF(name):
     dic = {}
     a = 0
     b = 0
-    f1 = open(name, "r")
+    f1 = open(name, "r", encoding="utf-8")
     ligne = f1.readline()
     p = True
     while ligne != "":
