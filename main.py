@@ -25,10 +25,36 @@ while x<0 or x>6:
                   "5. Indiquer le premier président à parler du climat et/ou de l’écologie.\n"
                   "6. Hormis les mots dits « non importants », quel(s) est(sont) le(s) mot(s) que tous les présidents ont évoqué.\n "))
 
-#if x==1:
+if x==1:
+    valider = True
+    g = TF_IDF()
+    w=0
+    print("Les mots ayant le moins d'importance sont: ")
+    for i in range(len(g)):
+        valider = True
+        for j in range(1,9):
+            if float(g[i][j]) == 0.0:
+                w = 0
+            else:
+                valider = False
+        if valider:
+            print(g[i][0])
 
 
-#if x==2:
+if x==2:
+    temp = 0.0
+    temp1 = 0.0
+    mot = ""
+    g = TF_IDF()
+    for i in range(len(g)):
+        temp = 0.0
+        for j in range(1,9):
+            temp = temp + float(g[i][j])
+        if temp > temp1:
+            mot = g[i][0]
+            temp1 = temp
+        print(temp)
+    print("Le mot ayant le score TF-IDF le plus élever est: ",mot," avec un score de: ",format(temp1, ".2f"))
 
 if x == 3:
     k=(max(TF("cleaned/Nomination_Chirac1.txt")))
@@ -46,6 +72,7 @@ if x == 4:
             L1 = ligne.split(" ")
             if "Nation" in L1:
                 k.append(filename)
+            ligne = f1.readline()
     print(k)
 
 

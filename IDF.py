@@ -53,4 +53,3 @@ def TF_IDF():
                 g = d[mot]
                 L2.append(format(g*Dictionnaire_IDF[mot], ".1f"))
         print(L2)
-TF_IDF()
