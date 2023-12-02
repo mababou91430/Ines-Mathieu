@@ -47,7 +47,7 @@ def TF_IDF():
             text = "cleaned/" + filename
             d = TF(text)
             if mot not in d:
-                L2.append("/")
+                L2.append("9.9")
             else:
                 g = d[mot]
                 L2.append(format(g*Dictionnaire_IDF[mot], ".1f"))

@@ -104,6 +104,14 @@ if x == 5:
 
 if x == 6:
     g = TF_IDF()
-
+    temp = True
+    L1 = []
+    L2 = ["les","en","ce","je","la","de","l","une","a","qui","se","et","dans","le","aux","que","son","pour","qu","par",
+          "des","j","il","est","mais","du"]
+    for i in range(len(g)):
+        if g[i][1] == "0.0" and g[i][0] not in L2:
+            L1.append(g[i][0])
+    for i in range(len(L1)):
+        print(L1[i])
 
 
