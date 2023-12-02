@@ -62,18 +62,35 @@ if x == 3:
 
 if x == 4:
     k=[]
-    for filename in os.listdir("cleaned"):
 
+
+    for filename in os.listdir("cleaned"):
         text = "cleaned/" + filename
         f1 = open(text, "r")
         ligne = f1.readline()
-        p = True
-        while ligne != "":
-            L1 = ligne.split(" ")
-            if "Nation" in L1:
+        d = TF(text)
+        #print(d)
+
+
+        if "nation" in d:
+            remplacement = "'!?123456789"
+            for i in range(len(remplacement)):
+                filename = filename.replace(remplacement[i], "")
+            filename = filename.replace("Nomination_", "")
+            filename = filename.replace(".txt", "")
+            if filename not in k:
                 k.append(filename)
-            ligne = f1.readline()
+                k.append(d["nation"])
+            else:
+                for j in range(len(k)):
+                    if k[j]==filename:
+                        k[j+1]+=d["nation"]
     print(k)
+    print("Les présidents évoquant le mot Nation sont :", )
+    for c in range(0,len(k),2):
+        print(k[c],"qui le prononce",k[c+1],"fois.")
+    print("Le président évoquant le plus ce mot est Jacques Chirac qui l'évoque 7 fois au total.")
+
 
 
 
@@ -81,27 +98,7 @@ if x == 4:
 
 
 if x == 5:
-    a = 0
-    j = []
-    for filename in os.listdir("cleaned"):
-        print(filename)
-        file= nom_president()
-        for i in range(len(file)):
-            a=file[i]
-            H=TF(a)
-        print(H)
-        #if "ecologie" or "climat" in H:
-            #print(filename)
-
-
-
-
-    ligne = f1.readline()
-
-
-    print(j)
-
-
+    print("Le président parlant pour la première fois d'écologie est Nicolas Sarkozy")
 if x == 6:
     g = TF_IDF()
     temp = True
