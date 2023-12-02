@@ -102,7 +102,8 @@ if x == 5:
     print(j)
 
 
-#if x == 6:
+if x == 6:
+    g = TF_IDF()
 
 
 

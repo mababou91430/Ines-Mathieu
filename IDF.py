@@ -40,7 +40,6 @@ def IDF():
 def TF_IDF():
     L1 = []
     Dictionnaire_IDF = IDF()
-    print(Dictionnaire_IDF)
     for mot in Dictionnaire_IDF:
         L2 = []
         L2.append(mot)
@@ -48,8 +47,9 @@ def TF_IDF():
             text = "cleaned/" + filename
             d = TF(text)
             if mot not in d:
-                L2.append(0)
+                L2.append("/")
             else:
                 g = d[mot]
                 L2.append(format(g*Dictionnaire_IDF[mot], ".1f"))
-        print(L2)
+        L1.append(L2)
+    return L1
