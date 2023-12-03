@@ -47,7 +47,7 @@ def TF_IDF():
             text = "cleaned/" + filename #création d'une variable qui va prendre le nom du fichier et ajout de "cleaned/" devant pour pouvoir ouvrir les fichier
             d = TF(text) #création d'une variable qui va prendre le TF comme valeur
             if mot not in d:
-                L2.append("9.9")   #si le mot n'est pas dans le dictionnaire TF de ce texte on lui mets 9.9 comme valeur
+                L2.append("0")   #si le mot n'est pas dans le dictionnaire TF de ce texte on lui mets 0 comme valeur
             else:
                 g = d[mot]  #création d'une variable g qui va prendre la valeur TF du mot
                 L2.append(format(g*Dictionnaire_IDF[mot], ".1f")) #calcul du TF-IDF de ce mot
