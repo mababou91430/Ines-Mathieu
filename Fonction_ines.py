@@ -38,26 +38,26 @@ def nom_president():
 
 #print(nom_president())
 
-def clean():
-    for filename in os.listdir("speeches-20231124"):
-        mon_fichier = "speeches-20231124/" + filename
-        f1 = open(mon_fichier, "r", encoding="utf-8")
-        repertoire_nom_fichier = "cleaned/" + filename
-        f = open(repertoire_nom_fichier, "w", encoding="utf-8")
-        ligne = f1.readline()
+def clean(): # fonction qui enlève les majuscules et la ponctuation de chaque discours
+    for filename in os.listdir("speeches-20231124"): # récupère les fichier
+        mon_fichier = "speeches-20231124/" + filename # ajoute un nom à chacun d'eux
+        f1 = open(mon_fichier, "r", encoding="utf-8") #ouvre le fichier avec l'encodage utf-8 pour éviter les problèmes d'accents
+        repertoire_nom_fichier = "cleaned/" + filename # prend le fichier et ajoute cleaned pour l'ouvrir
+        f = open(repertoire_nom_fichier, "w", encoding="utf-8") #ouvre le fichier de manière à pouvoir le modifier
+        ligne = f1.readline() #parcours la première ligne
         while ligne != "":
-            l = list(ligne)
+            l = list(ligne)  #prend en liste la ligne
             for i in range(len(ligne)):
-                if 65 <= ord(l[i]) <= 90:
-                    l[i] = chr(ord(l[i]) + 32)
-                if (33 <= ord(l[i]) <= 47) or (58 <= ord(l[i]) <= 64) or (91 <= ord(l[i]) <= 96) or (123 <= ord(l[i]) <= 126 ) :
-                    if ord(l[i])== 45 or 44:
-                        l[i] = chr(32)
+                if 65 <= ord(l[i]) <= 90: # si la lettre est une majuscule
+                    l[i] = chr(ord(l[i]) + 32)# on ajoute 32 à son code ascii pour que ca devienne une minuscule
+                if (33 <= ord(l[i]) <= 47) or (58 <= ord(l[i]) <= 64) or (91 <= ord(l[i]) <= 96) or (123 <= ord(l[i]) <= 126 ) :# si le caractère est une ponctuation
+                    if ord(l[i])== 45 or 44: # si c'ets un - ou une '
+                        l[i] = chr(32) # alors on met un espace pour éviter qe le mot composé devienne un seul mot
                     else:
-                        l[i]= chr(0)
-            ligne = "".join(l)
+                        l[i]= chr(0)# sinon on fait juste disparaitre le caractère de ponctuation
+            ligne = "".join(l) # on ajoute ce qu'on a modifié au texte
             f.write(ligne)
-            ligne = f1.readline()
+            ligne = f1.readline() #on change de ligne
 
 
 
