@@ -64,25 +64,23 @@ def clean():
 #clean()
 
 
-def TF(name):
-    dic = {}
-    a = 0
-    b = 0
-    f1 = open(name, "r", encoding="utf-8")
-    ligne = f1.readline()
-    p = True
-    while ligne != "":
-        L1 = ligne.split(" ")
-        for i in range(len(L1)):
-            if L1[i] in dic:
-                dic[L1[i]] = dic[L1[i]] + 1
+def TF(name): #fonction qui permet d'avoir le dictionnaire comprenant tous les mots prononcés par un président dans un discours et l'itération de ces mots
+    dic = {} # création du dictionnaire
+    a = 0 #création d'un compteur
+    f1 = open(name, "r", encoding="utf-8")# ouvre le fichier choisi et avec l'encodage utf-8 pour éviter les problèmes d'accents et donc un mauvais affichage
+    ligne = f1.readline() #parcours la première ligne du fichier
+    while ligne != "": #tant qu'il y a de l'écriture sur chaque ligne
+        L1 = ligne.split(" ")#liste comprenant tous les mot de la  ligne
+        for i in range(len(L1)): #pour la longueur de cette liste
+            if L1[i] in dic:# si le mot existe deja dans le dico
+                dic[L1[i]] = dic[L1[i]] + 1# on ajoute juste +1 à son itération
             else:
-                for j in range(i, len(L1)):
+                for j in range(i, len(L1)): #sinon on part du mot et on regrade dans toute la liste(ligne) s'il y est
                     if L1[j] == L1[i]:
-                        a += 1
-                dic[L1[i]] = a
-                a = 0
-        ligne = f1.readline()
+                        a += 1 #dès qu'il y est le compteur augmente
+                dic[L1[i]] = a #le mot apprend son itération
+                a = 0 # on remet le compteur à 0 pour éviter l'accumulation
+        ligne = f1.readline()# on change de ligne
 
     return(dic)
 

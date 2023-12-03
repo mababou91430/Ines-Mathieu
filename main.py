@@ -73,7 +73,6 @@ if x == 4:
         d = TF(text)
         #print(d)
 
-
         if "nation" in d:
             remplacement = "'!?123456789"
             for i in range(len(remplacement)):
