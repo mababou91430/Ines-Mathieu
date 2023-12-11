@@ -38,7 +38,7 @@ def nom_president():
 
 #print(nom_president())
 
-def clean():
+def clean_ponctuation():
     for filename in os.listdir("speeches-20231124"):
         mon_fichier = "speeches-20231124/" + filename
         f1 = open(mon_fichier, "r")

@@ -1,3 +1,4 @@
+from Fonction_ines import *
 import os
 
 
@@ -55,5 +56,21 @@ def TF():
             ligne = f1.readline()
         print(dic)
 
-test = {}
-TF()
+
+def Tokenisation(text):
+    l = list(text)
+    for i in range(len(l)):
+        if 65 <= ord(l[i]) <= 90:
+            l[i] = chr(ord(l[i]) + 32)
+        if (33 <= ord(l[i]) <= 47) or (58 <= ord(l[i]) <= 64) or (91 <= ord(l[i]) <= 96) or (123 <= ord(l[i]) <= 126):
+            if ord(l[i]) == 45 or 39:
+                l[i] = chr(32)
+            else:
+                l.remove(l[i])
+    question = "".join(l)
+    question = question.split(" ")
+    return question
+
+
+text = input("saisir une question : ")
+print(Tokenisation(text))
