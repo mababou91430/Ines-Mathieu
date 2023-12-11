@@ -1,5 +1,7 @@
+from IDF import *
 from Fonction_ines import *
 import os
+
 
 
 def nom_president():
@@ -47,5 +49,41 @@ def Tokenisation(text):
     return question
 
 
-text = input("saisir une question : ")
-print(Tokenisation(text))
+def corpus(x):
+    k=[]
+    j=Tokenisation(x)
+    print (j)
+    for filename in os.listdir("cleaned"):
+        text = "cleaned/" + filename
+        f1 = open(text, "r",encoding="utf-8")
+        ligne = f1.readline()
+        d = TF(text)
+        print(d)
+        for elem in j:
+            print (elem)
+            if elem in d:
+                    k.append(elem)
+        return("les mots présents dans le corpus et la question sont :",k)
+
+
+def vecteur_TF_IDF(x):
+    j = Tokenisation(x)
+    k = IDF()
+    somme = 0
+    nb = {}
+    TF = {}
+    vTF_IDF = []
+    for i in range(len(j)):
+        if j[i] != " " and j[i] != "":
+            somme += 1
+    for i in range(len(j)):
+        if j[i] not in nb and j[i] != "":
+            nb[j[i]] = j.count(j[i])
+    for i in range(len(j)):
+        TF[j[i]] = nb[j[i]]/somme
+    for i in range(len(j)):
+
+    return TF
+
+z = "Quels présidents a répéter le plus de fois climat a son peuple dans son discours"
+print(vecteur_TF_IDF(z))
