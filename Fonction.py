@@ -1,3 +1,4 @@
+from IDF import *
 from Fonction_ines import *
 import os
 
@@ -72,5 +73,24 @@ def Tokenisation(text):
     return question
 
 
-text = input("saisir une question : ")
-print(Tokenisation(text))
+def vecteur_TF_IDF(text):
+    g = {}
+    l = Tokenisation(text)
+    nb_mots = 0
+    for i in range(len(l)):
+        if l[i] != "" and l[i] !=" ":
+            nb_mots += 1
+    for i in range(len(l)):
+        if l[i] != "" and l[i] !=" ":
+            g[l[i]] = l.count(l[i])
+    for i in g.keys():
+        g[i] = g[i]/nb_mots
+    d = IDF()
+    for i in g.keys():
+        for j in d.keys():
+            if i == j:
+                g[i] = d[i]*g[i]
+    return g
+
+text = "Ceci est une queston de test pour savoir si le code que j'ai fait marche une question est une question"
+print(vecteur_TF_IDF(text))
