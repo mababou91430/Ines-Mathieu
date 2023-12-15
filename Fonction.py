@@ -1,6 +1,7 @@
 from IDF import *
 from Fonction_ines import *
 import os
+#from TF_IDF import*
 
 
 def nom_president():
@@ -92,5 +93,59 @@ def vecteur_TF_IDF(text):
                 g[i] = d[i]*g[i]
     return g
 
-text = "Ceci est une queston de test pour savoir si le code que j'ai fait marche une question est une question"
-print(vecteur_TF_IDF(text))
+text = "Ceci est une question de test pour savoir si le code que j'ai fait marche une question est une question"
+#print(vecteur_TF_IDF(text))
+
+import math
+
+
+def psc(A):
+    g = 0
+    k = ""
+    d = -1
+    x=0
+    di={}
+
+    a = vecteur_TF_IDF(A)  # vecteur mot question
+    b = TF_IDF()  # vecteur mot document
+    print(a)
+    print(b)
+    for elem in a:
+
+        d += 1
+        for i in range(len(b)):
+
+
+            if b[i] == elem:
+
+                for j in range(len(b[i])):
+
+                    g += b[i][j]
+                    print(g)
+                for h in range(len(a[d])):
+                    print('x',x)
+                    x += a[d][h]
+
+        print(g)
+        # faire scalaire
+        di[elem] = (g * x)
+    return (di)
+
+
+def norme(A):
+    l = 0
+    a = vecteur_TF_IDF(A)  # vecteur mot question
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            l += (a[i][j]) ** 2
+    return (sqrt(l))
+
+
+def similarite(A, B):
+    c = 0
+    m = psc(A,b)
+    n = norme(A)
+    p = norme(B)
+    c = m /(n * p)
+
+print(psc(text))
