@@ -84,8 +84,6 @@ def vecteur_TF_IDF(text):
     for i in range(len(l)):
         if l[i] != "" and l[i] !=" ":
             g[l[i]] = l.count(l[i])
-    for i in g.keys():
-        g[i] = g[i]/nb_mots
     d = IDF()
     for i in g.keys():
         for j in d.keys():
@@ -139,7 +137,7 @@ def similarite(A, B):
     p = normeM(B)
     c = m /(n * p)
 
-def produit_scalaire(A,B):
+def produit_scalaire(A, B):
     c = len(TF_IDF())
     r = 0
     for i in range(c):
@@ -152,4 +150,10 @@ def normeM(A):
         r += A[i]**2
     return math.sqrt(r)
 
-print(psc(text))
+#def document_pertinent(TFIDF,vecteur_question,nom_text):
+
+
+
+
+
+print(vecteur_TF_IDF(text))
