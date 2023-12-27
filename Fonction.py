@@ -132,20 +132,24 @@ def psc(A):
     return (di)
 
 
-def norme(A):
-    l = 0
-    a = vecteur_TF_IDF(A)  # vecteur mot question
-    for i in range(len(a)):
-        for j in range(len(a[i])):
-            l += (a[i][j]) ** 2
-    return (math.sqrt(l))
-
-
 def similarite(A, B):
     c = 0
-    m = psc(A,b)
-    n = norme(A)
-    p = norme(B)
+    m = produit_scalaire(A,B)
+    n = normeM(A)
+    p = normeM(B)
     c = m /(n * p)
+
+def produit_scalaire(A,B):
+    c = len(TF_IDF())
+    r = 0
+    for i in range(c):
+        r += A[i]*B[i]
+    return r
+
+def normeM(A):
+    r = 0
+    for i in range(len(A)):
+        r += A[i]**2
+    return math.sqrt(r)
 
 print(psc(text))
