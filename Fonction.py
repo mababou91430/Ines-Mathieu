@@ -1,7 +1,7 @@
 from IDF import *
 from Fonction_ines import *
 import os
-
+#from TF_IDF import*
 
 
 def nom_president():
@@ -34,6 +34,31 @@ def clean():
             ligne = f1.readline()
 
 
+def TF():
+    dic = {}
+    a = 0
+    b = 0
+    for filename in os.listdir("cleaned"):
+        text = "cleaned/" + filename
+        f1 = open(text, "r")
+        ligne = f1.readline()
+        p = True
+        while ligne != "":
+            L1 = ligne.split(" ")
+            for i in range(len(L1)):
+                if L1[i] in dic:
+                    dic[L1[i]] = dic[L1[i]] + 1
+
+                else:
+                    for j in range(i, len(L1)):
+                        if L1[j] == L1[i]:
+                            a += 1
+                    dic[L1[i]] = a
+                    a = 0
+            ligne = f1.readline()
+        print(dic)
+
+
 def Tokenisation(text):
     l = list(text)
     for i in range(len(l)):
@@ -49,41 +74,78 @@ def Tokenisation(text):
     return question
 
 
-def corpus(x):
-    k=[]
-    j=Tokenisation(x)
-    print (j)
-    for filename in os.listdir("cleaned"):
-        text = "cleaned/" + filename
-        f1 = open(text, "r",encoding="utf-8")
-        ligne = f1.readline()
-        d = TF(text)
-        print(d)
-        for elem in j:
-            print (elem)
-            if elem in d:
-                    k.append(elem)
-        return("les mots présents dans le corpus et la question sont :",k)
+def vecteur_TF_IDF(text):
+    g = {}
+    l = Tokenisation(text)
+    nb_mots = 0
+    for i in range(len(l)):
+        if l[i] != "" and l[i] !=" ":
+            nb_mots += 1
+    for i in range(len(l)):
+        if l[i] != "" and l[i] !=" ":
+            g[l[i]] = l.count(l[i])
+    for i in g.keys():
+        g[i] = g[i]/nb_mots
+    d = IDF()
+    for i in g.keys():
+        for j in d.keys():
+            if i == j:
+                g[i] = d[i]*g[i]
+    return g
+
+text = "Ceci est une question de test pour savoir si le code que j'ai fait marche une question est une question"
+#print(vecteur_TF_IDF(text))
+
+import math
 
 
-def vecteur_TF_IDF(x):
-    j = Tokenisation(x)
-    k = IDF()
-    somme = 0
-    nb = {}
-    TF = {}
-    vTF_IDF = []
-    for i in range(len(j)):
-        if j[i] != " " and j[i] != "":
-            somme += 1
-    for i in range(len(j)):
-        if j[i] not in nb and j[i] != "":
-            nb[j[i]] = j.count(j[i])
-    for i in range(len(j)):
-        TF[j[i]] = nb[j[i]]/somme
-    for i in range(len(j)):
+def psc(A):
+    g = 0
+    k = ""
+    d = -1
+    x=0
+    di={}
 
-    return TF
+    a = vecteur_TF_IDF(A)  # vecteur mot question
+    b = TF_IDF()  # vecteur mot document
+    print(a)
+    print(b)
+    for elem in a:
 
-z = "Quels présidents a répéter le plus de fois climat a son peuple dans son discours"
-print(vecteur_TF_IDF(z))
+        d += 1
+        for i in range(len(b)):
+
+
+            if b[i] == elem:
+
+                for j in range(len(b[i])):
+
+                    g += b[i][j]
+                    print(g)
+                for h in range(len(a[d])):
+                    print('x',x)
+                    x += a[d][h]
+
+        print(g)
+        # faire scalaire
+        di[elem] = (g * x)
+    return (di)
+
+
+def norme(A):
+    l = 0
+    a = vecteur_TF_IDF(A)  # vecteur mot question
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            l += (a[i][j]) ** 2
+    return (sqrt(l))
+
+
+def similarite(A, B):
+    c = 0
+    m = psc(A,b)
+    n = norme(A)
+    p = norme(B)
+    c = m /(n * p)
+
+print(psc(text))
