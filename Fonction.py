@@ -138,7 +138,7 @@ def norme(A):
     for i in range(len(a)):
         for j in range(len(a[i])):
             l += (a[i][j]) ** 2
-    return (sqrt(l))
+    return (math.sqrt(l))
 
 
 def similarite(A, B):
