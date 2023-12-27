@@ -34,30 +34,21 @@ def clean():
             ligne = f1.readline()
 
 
-def TF():
-    dic = {}
-    a = 0
-    b = 0
+def corpus(x):
+    k=[]
+    j=Tokenisation(x)
+    print(j)
     for filename in os.listdir("cleaned"):
         text = "cleaned/" + filename
-        f1 = open(text, "r")
+        f1 = open(text, "r",encoding="utf-8")
         ligne = f1.readline()
-        p = True
-        while ligne != "":
-            L1 = ligne.split(" ")
-            for i in range(len(L1)):
-                if L1[i] in dic:
-                    dic[L1[i]] = dic[L1[i]] + 1
-
-                else:
-                    for j in range(i, len(L1)):
-                        if L1[j] == L1[i]:
-                            a += 1
-                    dic[L1[i]] = a
-                    a = 0
-            ligne = f1.readline()
-        print(dic)
-
+        d = TF(text)
+        print(d)
+        for elem in j:
+            print(elem)
+            if elem in d and elem not in k:
+                    k.append(elem)
+    return("les mots présents dans le corpus et la question sont :",k)
 
 def Tokenisation(text):
     l = list(text)
@@ -76,7 +67,11 @@ def Tokenisation(text):
 
 def vecteur_TF_IDF(text):
     g = {}
+    mop = []
+    test = False
+    TF_IDF_Inverser = []
     l = Tokenisation(text)
+    b = TF_IDF()
     nb_mots = 0
     for i in range(len(l)):
         if l[i] != "" and l[i] !=" ":
@@ -85,49 +80,22 @@ def vecteur_TF_IDF(text):
         if l[i] != "" and l[i] !=" ":
             g[l[i]] = l.count(l[i])
     d = IDF()
-    for i in g.keys():
-        for j in d.keys():
+    for i in d.keys():
+        test = False
+        for j in g.keys():
             if i == j:
-                g[i] = d[i]*g[i]
-    return g
+                d[i] = g[i]*d[i]
+                test = True
+        if test == False:
+            d[i] = 0
+    for i in d.keys():
+        mop.append(d[i])
+    return mop
 
-text = "Ceci est une question de test pour savoir si le code que j'ai fait marche une question est une question"
+text = "présidents messieurs Ceci est une question de test pour savoir si le code que j'ai fait marche une question est une question climat président messieurs messieurs"
 #print(vecteur_TF_IDF(text))
 
 import math
-
-
-def psc(A):
-    g = 0
-    k = ""
-    d = -1
-    x=0
-    di={}
-
-    a = vecteur_TF_IDF(A)  # vecteur mot question
-    b = TF_IDF()  # vecteur mot document
-    print(a)
-    print(b)
-    for elem in a:
-
-        d += 1
-        for i in range(len(b)):
-
-
-            if b[i] == elem:
-
-                for j in range(len(b[i])):
-
-                    g += b[i][j]
-                    print(g)
-                for h in range(len(a[d])):
-                    print('x',x)
-                    x += a[d][h]
-
-        print(g)
-        # faire scalaire
-        di[elem] = (g * x)
-    return (di)
 
 
 def similarite(A, B):
@@ -136,24 +104,50 @@ def similarite(A, B):
     n = normeM(A)
     p = normeM(B)
     c = m /(n * p)
+    return c
 
 def produit_scalaire(A, B):
     c = len(TF_IDF())
     r = 0
     for i in range(c):
-        r += A[i]*B[i]
+        r += float(A[i])*float(B[i])
     return r
 
 def normeM(A):
     r = 0
     for i in range(len(A)):
-        r += A[i]**2
+        r += float(A[i])**2
     return math.sqrt(r)
 
-#def document_pertinent(TFIDF,vecteur_question,nom_text):
+def document_pertinent(TFIDF,vecteur_question,nom_text):
+    temp = 0.0
+    document = 0
+    for i in range(8):
+        d = similarite(vecteur_question,TFIDF[i])
+        if float(d) > temp:
+            temp = d
+            document = i
+    g = nom_text[document]
+    return g
 
 
 
 
 
-print(vecteur_TF_IDF(text))
+
+
+list_text = []
+for filename in os.listdir("cleaned"):
+    list_text.append(filename)
+bn = vecteur_TF_IDF(text)
+TF_IDF_Inverser = []
+l = Tokenisation(text)
+b = TF_IDF()
+nb_mots = 0
+for i in range(1,9):
+    L = []
+    for j in range(len(b)):
+        L.append(b[j][i])
+    TF_IDF_Inverser.append(L)
+g = vecteur_TF_IDF(text)
+print(document_pertinent(TF_IDF_Inverser,bn,list_text))
