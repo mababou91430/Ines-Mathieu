@@ -153,20 +153,32 @@ for i in range(1,9):
     for j in range(len(b)):
         L.append(b[j][i])
     TF_IDF_Inverser.append(L)
+for i in range(8):
+    print(TF_IDF_Inverser[i])
+
 g = vecteur_TF_IDF(text)
 print(document_pertinent(TF_IDF_Inverser,bn,list_text))
 hj=(document_pertinent(TF_IDF_Inverser,bn,list_text))
+#print (hj)
+cm=-1
+for filename in os.listdir("speeches-20231124"):
+    cm+=1
+    if filename==hj:
+        print ("cm",cm)
+j=(TF_IDF_Inverser[cm])
+print(j)
+
+
+
 # partie 6
-
-
 
 print(max(g))
 cmpt=-1
 ok=False
 while ok != True:
-    for i in range (len(g)):
+    for i in range (len(j)):
         #print(g)
-        if g [i]==max(g):
+        if j[i]==max(g):
             #print("iii",i)
 
             s = TF("cleaned/" + hj)
@@ -174,8 +186,8 @@ while ok != True:
             for k in s.items():
                 cmpt+=1
                 if cmpt==i:
-                    print("trrrr",k[0])
-                    xd=k[0]
+                    print("trrrr",k[i])
+                    xd=k[i]
                     ok = True
 hq=False
 while hq ==False:
@@ -188,6 +200,8 @@ l=[]
 me=False
 elem=""
 xs=""
+
+print ("xd",xd)
 for i in range (len(xd)):
     if i ==0:
         xs+=(chr(ord(xd[i])-32))

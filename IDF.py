@@ -50,7 +50,7 @@ def TF_IDF():
                 L2.append("0")   #si le mot n'est pas dans le dictionnaire TF de ce texte on lui mets 0 comme valeur
             else:
                 g = d[mot]  #création d'une variable g qui va prendre la valeur TF du mot
-                L2.append(format(g*Dictionnaire_IDF[mot], ".1f")) #calcul du TF-IDF de ce mot
+                L2.append(format(g*Dictionnaire_IDF[mot])) #calcul du TF-IDF de ce mot
         L1.append(L2) #ajout de la liste L2 a la liste L1
     return L1 #retour de la matrice TF-IDF
 
