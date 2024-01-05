@@ -92,7 +92,7 @@ def vecteur_TF_IDF(text):
         mop.append(d[i])
     return mop
 
-text = "présidents messieurs Ceci est une question de test pour savoir si le code que j'ai fait marche une question est une question climat président messieurs messieurs"
+text = "qui compte s'occuper du climat"
 #print(vecteur_TF_IDF(text))
 
 import math
@@ -102,8 +102,12 @@ def similarite(A, B):
     c = 0
     m = produit_scalaire(A,B)
     n = normeM(A)
+    #print("nnnn",n)
     p = normeM(B)
-    c = m /(n * p)
+    #print("pppp",p)
+    if n*p != 0:
+        c = m /(n * p)
+        #print("cccc",c)
     return c
 
 def produit_scalaire(A, B):
@@ -151,3 +155,62 @@ for i in range(1,9):
     TF_IDF_Inverser.append(L)
 g = vecteur_TF_IDF(text)
 print(document_pertinent(TF_IDF_Inverser,bn,list_text))
+hj=(document_pertinent(TF_IDF_Inverser,bn,list_text))
+# partie 6
+
+
+
+print(max(g))
+cmpt=-1
+ok=False
+while ok != True:
+    for i in range (len(g)):
+        #print(g)
+        if g [i]==max(g):
+            #print("iii",i)
+
+            s = TF("cleaned/" + hj)
+            print(s)
+            for k in s.items():
+                cmpt+=1
+                if cmpt==i:
+                    print("trrrr",k[0])
+                    xd=k[0]
+                    ok = True
+hq=False
+while hq ==False:
+    for fg in os.listdir("speeches-20231124"):
+        if fg==hj:
+            f2=open("speeches-20231124/"+ fg, "r")
+            #print("f2",f2)
+            hq=True
+l=[]
+me=False
+elem=""
+xs=""
+for i in range (len(xd)):
+    if i ==0:
+        xs+=(chr(ord(xd[i])-32))
+    if i !=0:
+        xs+=xd[i]
+
+ligne = f2.readline()
+#while ligne != "":
+while me != True:
+    l.append(ligne)
+    print("lili",l)
+    for el in l:
+        print("el",el)
+        for e in el :
+            if ord(e)==46:
+                #print("HOOOOOOOOOOOOOOOOOO")
+                if xd or xs in l:
+                   # print("UIIIIIIIIIIIII")
+                    me = True
+                    break
+                else:
+                    l=[]
+    ligne = f2.readline()
+print(str(l))
+print("fin")
+
