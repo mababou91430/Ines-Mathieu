@@ -175,10 +175,14 @@ print(j)
 print(max(g))
 cmpt=-1
 ok=False
+print("a")
 while ok != True:
     for i in range (len(j)):
+        print("b")
         #print(g)
+        print(j[i])
         if j[i]==max(g):
+            print(j[i])
             #print("iii",i)
 
             s = TF("cleaned/" + hj)
