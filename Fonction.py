@@ -134,12 +134,6 @@ def document_pertinent(TFIDF,vecteur_question,nom_text):
     g = nom_text[document]
     return g
 
-
-
-
-
-
-
 list_text = []
 for filename in os.listdir("cleaned"):
     list_text.append(filename)
@@ -155,8 +149,10 @@ for i in range(1,9):
     TF_IDF_Inverser.append(L)
 for i in range(8):
     print(TF_IDF_Inverser[i])
-
+print("ttt",text)
 g = vecteur_TF_IDF(text)
+
+print(g)
 print(document_pertinent(TF_IDF_Inverser,bn,list_text))
 hj=(document_pertinent(TF_IDF_Inverser,bn,list_text))
 #print (hj)
@@ -182,8 +178,6 @@ while ok != True:
         print(j[i])
         if j[i]==max(g):
             print(j[i])
-            #print("iii",i)
-
             s = TF("cleaned/" + hj)
             print(s)
             for k in s.items():
@@ -220,9 +214,7 @@ while me != True:
         print("el",el)
         for e in el :
             if ord(e)==46:
-                #print("HOOOOOOOOOOOOOOOOOO")
                 if xd or xs in l:
-                   # print("UIIIIIIIIIIIII")
                     me = True
                     break
                 else:
