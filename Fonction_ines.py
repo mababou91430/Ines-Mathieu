@@ -81,7 +81,7 @@ def TF(name): #fonction qui permet d'avoir le dictionnaire comprenant tous les m
                 dic[L1[i]] = a #le mot apprend son itération
                 a = 0 # on remet le compteur à 0 pour éviter l'accumulation
         ligne = f1.readline()# on change de ligne
-
     return(dic)
+
 
 

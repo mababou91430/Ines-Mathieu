@@ -111,5 +111,3 @@ if x == 6:
             L1.append(g[i][0])
     for i in range(len(L1)):
         print(L1[i])
-
-
